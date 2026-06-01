@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIST – Roadmap de Substituição | 08–22/06/2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ── Alerta de escalonamento ── */
+    .escalation-callout {
+      border: 1px solid #dce6f0;
+      border-left: 4px solid #005CA8;
+      border-radius: .5rem;
+      background: #f0f6fd;
+      padding: 1rem 1.25rem;
+      margin-bottom: .75rem;
+    }
+    .escalation-callout .callout-title {
+      font-size: .85rem;
+      font-weight: 700;
+      margin-bottom: .35rem;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      color: #004077;
+    }
+
+    /* ── Alerta crítico (defeso) ── */
+    .critical-callout {
+      border: 1px solid #f5c6cb;
+      border-left: 4px solid #c0392b;
+      border-radius: .5rem;
+      background: #fff5f5;
+      padding: 1rem 1.25rem;
+      margin-bottom: .75rem;
+    }
+    .critical-callout .callout-title {
+      font-size: .85rem;
+      font-weight: 700;
+      margin-bottom: .35rem;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      color: #c0392b;
+    }
+
+    /* ── Tag de escalonamento ── */
+    .badge-escalate { background: #dce9f7; color: #004077; }
+    .badge-critical  { background: #fde8e8; color: #c0392b; }
+    .badge-ok        { background: #E1FFE2; color: #158A19; }
+
+    /* ── Coluna dois lados ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+    .two-col h6 {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #555;
+      margin-bottom: .5rem;
+    }
+    .two-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .two-col ul li {
+      font-size: .92rem;
+      margin-bottom: .35rem;
+      padding-left: 1em;
+      text-indent: -1em;
+    }
+    .two-col ul li::before { content: "▸ "; color: var(--fg); }
+
+    /* ── Timeline de marcos ── */
+    .timeline { border-left: 2px solid var(--lt); padding-left: 1.25rem; margin-top: .5rem; }
+    .timeline-item { position: relative; margin-bottom: 1.1rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.45rem;
+      top: .35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--fg);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--lt);
+    }
+    .timeline-item.done::before { background: #198754; box-shadow: 0 0 0 2px #b7dfca; }
+    .timeline-item.warn::before { background: #D97706; box-shadow: 0 0 0 2px #fde8b0; }
+    .timeline-item.crit::before { background: #c0392b; box-shadow: 0 0 0 2px #fbbfbf; }
+
+    .timeline-date { font-size: .78rem; font-weight: 700; color: var(--fg); margin-bottom: .1rem; }
+    .timeline-label { font-size: .93rem; font-weight: 600; }
+    .timeline-sub { font-size: .85rem; color: #555; }
+  </style>
+</head>
+
+<body>
+  <div class="page-topbar"></div>
+
+  <div class="layout-wrapper">
+
+    <!-- ── Sidebar ── -->
+    <nav class="sidebar d-none d-md-block">
+      <div class="sidebar-heading">Navegação</div>
+      <a class="nav-link" href="#contexto">
+        <span class="material-icons">info</span> Contexto
+      </a>
+      <a class="nav-link" href="#agenda">
+        <span class="material-icons">event</span> Agenda crítica
+      </a>
+      <a class="nav-link" href="#pravida-c1c3">
+        <span class="material-icons">local_police</span> PRaVida C1 e C3
+      </a>
+      <a class="nav-link" href="#pravida-c2">
+        <span class="material-icons">school</span> PRaVida C2
+      </a>
+      <a class="nav-link" href="#portaria">
+        <span class="material-icons">gavel</span> Portaria dos Guias
+      </a>
+      <a class="nav-link" href="#painel">
+        <span class="material-icons">dashboard</span> Painel PRaVida
+      </a>
+      <a class="nav-link" href="#psv">
+        <span class="material-icons">map</span> PSV-SP
+      </a>
+      <a class="nav-link" href="#terceiros">
+        <span class="material-icons">warning</span> Pendências de terceiros
+      </a>
+      <a class="nav-link" href="#sei">
+        <span class="material-icons">description</span> Processos SEI
+      </a>
+    </nav>
+
+    <!-- ── Mobile nav ── -->
+    <div class="mobile-nav d-md-none w-100 d-flex flex-wrap gap-1">
+      <a class="nav-link" href="#contexto"><span class="material-icons" style="font-size:.9rem">info</span></a>
+      <a class="nav-link" href="#agenda"><span class="material-icons" style="font-size:.9rem">event</span></a>
+      <a class="nav-link" href="#pravida-c1c3"><span class="material-icons" style="font-size:.9rem">local_police</span></a>
+      <a class="nav-link" href="#pravida-c2"><span class="material-icons" style="font-size:.9rem">school</span></a>
+      <a class="nav-link" href="#portaria"><span class="material-icons" style="font-size:.9rem">gavel</span></a>
+      <a class="nav-link" href="#painel"><span class="material-icons" style="font-size:.9rem">dashboard</span></a>
+      <a class="nav-link" href="#psv"><span class="material-icons" style="font-size:.9rem">map</span></a>
+      <a class="nav-link" href="#terceiros"><span class="material-icons" style="font-size:.9rem">warning</span></a>
+      <a class="nav-link" href="#sei"><span class="material-icons" style="font-size:.9rem">description</span></a>
+    </div>
+
+    <!-- ── Coluna principal ── -->
+    <div class="main-column">
+      <div class="main-content">
+
+        <!-- ── Header ── -->
+        <div class="identity-block d-flex align-items-start gap-3">
+          <img src="https://www.detran.sp.gov.br/702a783633529610cd8381ac4f5c7b5b.iix"
+               alt="Detran-SP" style="height:48px; margin-top:.25rem" />
+          <div>
+            <h1 class="fw-bold mb-1" style="color:var(--dark); font-size:1.65rem; line-height:1.2">
+              Roadmap de Substituição CIST
+            </h1>
+            <p class="mb-0" style="color:#555; font-size:.93rem">
+              Período de férias da coordenação: <strong>08 a 22/06/2026</strong> &nbsp;·&nbsp;
+              Substituto operacional: <strong>Pedro (COST)</strong> &nbsp;·&nbsp;
+              Escalonamento: <strong>Everaldo (CGSV)</strong>
+            </p>
+            <p class="mb-0 mt-1" style="color:#888; font-size:.82rem">
+              Coordenadoria de Integração de Sistemas de Trânsito · Diretoria de Segurança Viária · Detran-SP &nbsp;·&nbsp; Atualizado em 01/06/2026
+            </p>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: CONTEXTO
+        ══════════════════════════════════════════ -->
+        <section id="contexto">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">info</span> Contexto e escopo
+          </h2>
+          <p>Este documento registra o estado operacional da CIST no período de ausência da coordenadora
+             Marília Hildebrand (férias 04–22/06/2026). O substituto operacional é Pedro Santos (COST);
+             decisões que envolvam a CGSV ou a Diretoria requerem validação de Everaldo antes de avançar
+             — esses itens estão sinalizados ao longo do documento.</p>
+          <p>O período coincide com a fase mais densa do sprint PRaVida: lista de priorização, imersões
+             técnicas e início do atendimento individualizado com municípios, todos com datas fixas e
+             encadeados até a janela limite de <strong>04/07 (defeso eleitoral)</strong>.
+             O PSV-SP está em modo de operação limitada — a frente da CIST no período é a alimentação
+             do banco de dados de contatos, sob coordenação da DIST (Edu).</p>
+
+          <div class="critical-callout">
+            <div class="callout-title">
+              <span class="material-icons" style="font-size:1rem">event_busy</span>
+              04/07/2026 — Início do defeso eleitoral
+            </div>
+            <p class="mb-0" style="font-size:.9rem">
+              Janela limite para formalização antecipada do PRaVida. Documento de cenário de risco
+              concluído em 28/05 e encaminhado à CGSV e DSV-GAB. Qualquer comunicação sobre
+              assinatura antecipada passa exclusivamente por Everaldo.
+            </p>
+          </div>
+
+          <div class="escalation-callout">
+            <div class="callout-title">
+              <span class="material-icons" style="font-size:1rem">shield</span>
+              Regra de escalonamento
+            </div>
+            <p class="mb-0" style="font-size:.9rem">
+              Itens marcados com <span class="badge badge-escalate">⚠️ CGSV</span> não podem ser
+              movimentados sem posição prévia de Everaldo. Pedro opera, registra e cobra —
+              não decide por Everaldo.
+            </p>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: AGENDA CRÍTICA
+        ══════════════════════════════════════════ -->
+        <section id="agenda">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">event</span> Agenda crítica 08–22/06
+          </h2>
+          <p>Marcos inegociáveis do período. Atrasos em qualquer um deles comprometem o encadeamento
+             até o defeso eleitoral.</p>
+
+          <div class="timeline">
+
+            <div class="timeline-item warn">
+              <div class="timeline-date">10/06</div>
+              <div class="timeline-label">Pareceres técnicos C1 e C3 fechados</div>
+              <div class="timeline-sub">Base para a apresentação do dia 12. Responsável: equipe (Indira + Luciana) + Pedro.</div>
+            </div>
+
+            <div class="timeline-item warn">
+              <div class="timeline-date">12/06</div>
+              <div class="timeline-label">Apresentação lista de priorização C1+C3 — CGSV + DSV
+                <span class="badge badge-escalate ms-1">⚠️ CGSV</span>
+              </div>
+              <div class="timeline-sub">Indira e Luciana apresentam. Pedro garante que Everaldo está confirmado e ciente da pauta.</div>
+            </div>
+
+            <div class="timeline-item warn">
+              <div class="timeline-date">12/06</div>
+              <div class="timeline-label">Painel Executivo PRaVida V2 disponível</div>
+              <div class="timeline-sub">Com sessão de priorização e acesso a pareceres técnicos. Status atual: não iniciado. Pedro.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">13/06 (limite)</div>
+              <div class="timeline-label">Confirmação do documento de trabalho — BIGRS (Diogo)</div>
+              <div class="timeline-sub">Insumo prévio para a imersão DFT+BIGRS de 18–19/06.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">15–19/06</div>
+              <div class="timeline-label">Imersão equipes técnicas — modelagem C2 (primeiras 2 aulas)</div>
+              <div class="timeline-sub">EPT coordena. Pedro monitora. Depende do texto EPT (vencido 01/06 — ver §Pendências).</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">18–19/06</div>
+              <div class="timeline-label">Imersão presencial DFT + BIGRS — Curso de Fiscalização</div>
+              <div class="timeline-sub">DFT leva POPs e materiais. BIGRS prepara doc estratégico. Pedro de referência.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">22–25/06</div>
+              <div class="timeline-label">Início atendimento 1:1 com municípios (C1, C2 e C3)</div>
+              <div class="timeline-sub">Marco de transição — Marília retorna em 22/06.</div>
+            </div>
+
+            <div class="timeline-item warn">
+              <div class="timeline-date">26/06</div>
+              <div class="timeline-label">Painel PRaVida — apresentação EPT e DFT
+                <span class="badge badge-escalate ms-1">⚠️ CGSV</span>
+              </div>
+              <div class="timeline-sub">Pedro confirma agenda com Everaldo antes do dia 20.</div>
+            </div>
+
+            <div class="timeline-item warn">
+              <div class="timeline-date">30/06</div>
+              <div class="timeline-label">Estrutura curricular dos 3 componentes validada pela Diretoria
+                <span class="badge badge-escalate ms-1">⚠️ CGSV</span>
+              </div>
+              <div class="timeline-sub">Cobre C1, C2 e C3. Precisa passar por Everaldo antes de subir à Roberta.</div>
+            </div>
+
+            <div class="timeline-item crit">
+              <div class="timeline-date">04/07</div>
+              <div class="timeline-label">Início defeso eleitoral — janela limite para assinatura PRaVida
+                <span class="badge badge-critical ms-1">🔴 Crítico</span>
+              </div>
+              <div class="timeline-sub">Qualquer movimentação sobre formalização antecipada: somente por Everaldo.</div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: PRaVida C1 e C3
+        ══════════════════════════════════════════ -->
+        <section id="pravida-c1c3">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">local_police</span> PRaVida — C1 e C3 (Fiscalização)
+          </h2>
+          <p>Frente estratégica com janela até 04/07. Envolve a lista de priorização de municípios
+             (modalidade avançada e simplificada), os pareceres técnicos individuais e o desenvolvimento
+             do Curso de Boas Práticas de Fiscalização com DFT e BIGRS.</p>
+
+          <div class="accordion" id="acc-c1c3">
+
+            <!-- Priorização de municípios -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c1c3-priorizacao">
+                  <span class="material-icons me-2" style="font-size:1.1rem">format_list_numbered</span>
+                  Lista de priorização C1 e C3
+                  <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
+                </button>
+              </h2>
+              <div id="c1c3-priorizacao" class="accordion-collapse collapse show" data-bs-parent="#acc-c1c3">
+                <div class="accordion-body">
+                  <p>Ranqueamento por Taxa Média de Óbito (últimos 3 anos) + pontuação por critérios objetivos
+                     (escala 1–3), consolidado em pareceres técnicos individuais por município.
+                     Função dos pareceres: resguardo institucional — não instrumento de seleção.
+                     Decisão de publicação do ranking é da Diretoria (Roberta), não da equipe técnica.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Deadline pareceres: 10/06
+                    </span>
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Apresentação CGSV+DSV: 12/06
+                    </span>
+                    <span class="badge badge-escalate px-2 py-1">⚠️ Validação Everaldo necessária</span>
+                  </div>
+
+                  <div class="escalation-callout">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">shield</span>
+                      Escalonamento CGSV
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      A apresentação do dia 12/06 é para CGSV e DSV. Pedro confirma com Everaldo
+                      a participação e a pauta antes de 10/06. Nenhuma comunicação sobre o resultado
+                      da priorização vai para fora antes da validação da Diretoria.
+                    </p>
+                  </div>
+
+                  <div class="two-col mt-3">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>DFT (Márcio e Maria Aparecida) — calibrar matriz de classificação; confirmar entrega antes de 08/06</li>
+                        <li>Equipe — fechar lista e pareceres até 10/06</li>
+                        <li>Pedro — confirmar Everaldo na apresentação de 12/06</li>
+                        <li>Painel Executivo V2 disponível até 12/06 com sessão de priorização</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Municípios viáveis com CSM ativo: prazo de 30 dias do sistema diverge do prazo do programa — equipe orientada a não tomar como referência</li>
+                        <li>Atraso de DFT na calibração da matriz compromete prazo dos pareceres</li>
+                        <li>Decisão de publicação do ranking é estratégica — não antecipar sem aval da Diretoria</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Curso de Fiscalização -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1c3-curso">
+                  <span class="material-icons me-2" style="font-size:1.1rem">school</span>
+                  Curso de Boas Práticas de Fiscalização
+                  <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
+                </button>
+              </h2>
+              <div id="c1c3-curso" class="accordion-collapse collapse" data-bs-parent="#acc-c1c3">
+                <div class="accordion-body">
+                  <p>Redesenho colaborativo do curso com DFT e BIGRS, partindo do que a DFT já tem
+                     (POPs, materiais de cursos anteriores). Imersão presencial na sede do DETRAN em
+                     18 ou 19/06. Primeira aula prevista para 04/08.
+                     Estrutura das primeiras 2 aulas precisa estar validada pela Diretoria até fim de junho.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Imersão DFT+BIGRS: 18 ou 19/06
+                    </span>
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Validação Diretoria: até 30/06
+                    </span>
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Primeira aula: 04/08
+                    </span>
+                    <span class="badge badge-escalate px-2 py-1">⚠️ Validação Diretoria via CGSV</span>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>BIGRS (Diogo) — confirmar entrega do documento de trabalho prévio até 13/06</li>
+                        <li>DFT — levar POPs de alcoolemia e materiais de cursos anteriores para a imersão</li>
+                        <li>Pedro — referenciar a imersão e registrar encaminhamentos</li>
+                        <li>Pedro — checar com GAB-DSV até quando a validação da estrutura do curso pode entrar na agenda da Roberta (antes de 30/06)</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Estrutura das primeiras 2 aulas sem validação da Diretoria até 30/06 compromete o prazo de 04/08</li>
+                        <li>Setembro conflita com Semana Nacional de Trânsito — não usar como janela alternativa sem verificar agenda</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /accordion c1c3 -->
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: PRaVida C2
+        ══════════════════════════════════════════ -->
+        <section id="pravida-c2">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">school</span> PRaVida — C2 (Educação para o Trânsito)
+          </h2>
+          <p>Frente sob responsabilidade da EPT, com monitoramento da CIST. Os principais desafios
+             são a gestão da informação de presença e a modelagem do conteúdo das primeiras aulas.
+             Imersão técnica marcada para 15–19/06 depende de insumo da EPT com prazo já vencido.</p>
+
+          <div class="accordion" id="acc-c2">
+
+            <!-- Imersão e modelagem -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c2-imersao">
+                  <span class="material-icons me-2" style="font-size:1.1rem">groups</span>
+                  Imersão técnica — modelagem das primeiras 2 aulas
+                </button>
+              </h2>
+              <div id="c2-imersao" class="accordion-collapse collapse show" data-bs-parent="#acc-c2">
+                <div class="accordion-body">
+                  <p>Semana de 15–19/06: equipes técnicas desenvolvem e validam o conteúdo das primeiras
+                     duas aulas do C2, com envolvimento da EPT na modelagem pedagógica.
+                     A estrutura curricular completa dos 3 componentes deve estar validada pela
+                     Diretoria até 30/06.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Imersão: 15–19/06
+                    </span>
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Estrutura curricular validada: 30/06
+                    </span>
+                  </div>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">warning</span>
+                      Pendência ativa — EPT
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Modelagem do Curso de Educação para o Trânsito: Fabi (EPT) comprometeu
+                      entrega até a semana de 12/06. Pedro monitora e registra recebimento.
+                      A imersão de 15–19/06 depende desse insumo.
+                    </p>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>EPT (Fabi) — confirmar entrega da modelagem do Curso até semana de 12/06</li>
+                        <li>EPT — alinhar formato de entrega dos dados de presença das aulas já realizadas (deadline 12/06)</li>
+                        <li>Pedro — monitorar e registrar recebimento; escalar para Everaldo se não houver retorno até 10/06</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Reação defensiva da coordenação da EPT ao diagnóstico de fragilidade de dados — posicionamento da CIST como P.O. do PRaVida já reafirmado com CGSV em 28/05</li>
+                        <li>Ausência de insumo EPT inviabiliza a imersão de 15–19/06</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gestão de dados de presença -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2-dados">
+                  <span class="material-icons me-2" style="font-size:1.1rem">table_chart</span>
+                  Gestão de dados de presença
+                </button>
+              </h2>
+              <div id="c2-dados" class="accordion-collapse collapse" data-bs-parent="#acc-c2">
+                <div class="accordion-body">
+                  <p>Fragilidade identificada: ausência de campos obrigatórios padronizados nos formulários
+                     de coleta das aulas (nome completo, CPF, e-mail, cargo, município) inviabilizava
+                     cruzamento entre bases. Proposta de formulário padronizado encaminhada à EPT para
+                     as 3 aulas restantes. Modelo acordado: coletar uma vez, atualizar apenas quando necessário.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      EPT alinha formato de entrega: 12/06
+                    </span>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>EPT — implementar formulário padronizado nas próximas aulas (avaliação em andamento desde 28/05)</li>
+                        <li>EPT — entregar dados das aulas já realizadas em formato consolidável até 12/06</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Dados de aulas passadas com registros inconsistentes entre CSM, listas de presença e formulário de indicação — consolidação manual necessária</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /accordion c2 -->
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: PORTARIA
+        ══════════════════════════════════════════ -->
+        <section id="portaria">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">gavel</span> Portaria de institucionalização dos Guias PRaVida
+            <span class="badge badge-escalate ms-1" style="font-size:.75rem">⚠️ CGSV</span>
+          </h2>
+          <p>Minuta concluída e encaminhada para validação em 29/05. Institui todos os guias do PRaVida
+             por portaria única, evitando assimetria normativa entre componentes. Elaborada com base
+             na portaria da Senatran, com contexto ampliado e revisão técnica completa (moderação de
+             velocidades, PSV-SP, ações de educação, trecho normativo sobre Sistema Seguro).</p>
+
+          <div class="accordion" id="acc-portaria">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#portaria-status">
+                  <span class="material-icons me-2" style="font-size:1.1rem">pending_actions</span>
+                  Status e bloqueadores
+                </button>
+              </h2>
+              <div id="portaria-status" class="accordion-collapse collapse show" data-bs-parent="#acc-portaria">
+                <div class="accordion-body">
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-done px-2 py-1">✅ Minuta concluída — 25/05</span>
+                    <span class="badge badge-pend px-2 py-1">⏳ Aguardando validação Everaldo</span>
+                    <span class="badge badge-pend px-2 py-1">⏳ Aguardando texto EPT (Guia C2)</span>
+                    <span class="badge badge-escalate px-2 py-1">⚠️ Não submeter sem validação CGSV</span>
+                  </div>
+
+                  <div class="escalation-callout mb-3">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">shield</span>
+                      Escalonamento obrigatório
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Everaldo precisa validar o texto da portaria antes de qualquer submissão.
+                      Pedro cobra no canal de acompanhamento semanal e registra posição no Notion.
+                      A tramitação pode ocorrer em paralelo à finalização da V2 do Guia C1,
+                      mas não sem aval da CGSV.
+                    </p>
+                  </div>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">warning</span>
+                      Pendência ativa — EPT (prazo vencido 01/06)
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Capítulo de referências do Guia C2: prazo original 01/06, sem devolução registrada.
+                      Pedro aciona no início do período (08/06). Se não houver retorno em 48h, escalar para Everaldo.
+                    </p>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>Pedro — cobrar Everaldo no canal de acompanhamento semanal; registrar posição</li>
+                        <li>Pedro — acionar EPT em 08/06; escalar para Everaldo se sem retorno em 48h</li>
+                        <li>Após recebimento texto EPT: encaminhar conteúdo para diagramação da V2 do Guia C2 junto à BIGRS</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Submissão sem validação de Everaldo não deve ocorrer</li>
+                        <li>EPT sem entrega inviabiliza portaria completa antes do defeso</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: PAINEL EXECUTIVO
+        ══════════════════════════════════════════ -->
+        <section id="painel">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">dashboard</span> Painel Executivo PRaVida
+          </h2>
+          <p>O painel é o instrumento principal da Diretoria — utilizado por Roberta e Marta nos
+             despachos com o presidente. A alimentação rotineira foi transferida para as divisões
+             (DPESV, DENT, DIST) a partir de junho. Pedro verifica se o alinhamento foi feito e
+             se as divisões estão operando a atualização.</p>
+
+          <div class="accordion" id="acc-painel">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#painel-v2">
+                  <span class="material-icons me-2" style="font-size:1.1rem">update</span>
+                  V2 — sessão de priorização e pareceres técnicos
+                </button>
+              </h2>
+              <div id="painel-v2" class="accordion-collapse collapse show" data-bs-parent="#acc-painel">
+                <div class="accordion-body">
+                  <p>A V2 do Painel Executivo deve incluir sessão de priorização municipal e acesso
+                     a pareceres técnicos. Status atual: não iniciado. Deve estar disponível até 12/06
+                     para a apresentação à CGSV e DSV.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-critical px-2 py-1">🔴 Não iniciado</span>
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Deadline: 12/06
+                    </span>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>Pedro — iniciar V2 imediatamente após 08/06; garantir disponibilidade até 12/06</li>
+                        <li>Divisões (DPESV/DENT/DIST) — manter rotina de atualização de status a partir de junho</li>
+                        <li>Projetos concluídos: atualizar status para "concluído"; manter no painel como histórico</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>V2 não disponível até 12/06 compromete a apresentação da lista de priorização</li>
+                        <li>Avaliar necessidade de restrição de acesso ao painel de despacho (ponto em aberto)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: PSV-SP
+        ══════════════════════════════════════════ -->
+        <section id="psv">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">map</span> PSV-SP
+          </h2>
+          <p>No período de substituição, a frente da CIST no PSV-SP é restrita à alimentação do
+             banco de dados de contatos, coordenada pela DIST (Edu). O restante do PSV opera em modo
+             de espera — próximos eventos e desdobramentos serão conduzidos após o retorno de Marília.</p>
+
+          <div class="accordion" id="acc-psv">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#psv-contatos">
+                  <span class="material-icons me-2" style="font-size:1.1rem">contacts</span>
+                  Banco de dados unificado de contatos
+                </button>
+              </h2>
+              <div id="psv-contatos" class="accordion-collapse collapse show" data-bs-parent="#acc-psv">
+                <div class="accordion-body">
+                  <p>Pedro voluntariou-se para construir a base de dados unificada de contatos do PSV-SP
+                     na reunião de alinhamento de 28/05. A coleta e atualização da lista de contatos —
+                     iniciada no Detran-SP e estendida a outros órgãos via Cetran/CEAPESV — é processo
+                     contínuo e difícil. A DIST (Edu) coordena o envolvimento com os demais órgãos.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-date px-2 py-1">Responsável: Pedro (COST) + DIST (Edu)</span>
+                    <span class="badge badge-pend px-2 py-1">⏳ Em construção</span>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>Pedro — iniciar base de dados com os contatos já levantados no Detran-SP</li>
+                        <li>Edu (DIST) — articular extensão da coleta a outros órgãos via Cetran/CEAPESV</li>
+                        <li>Definir critérios de campos mínimos: nome, cargo, órgão, e-mail, telefone, eixo PSV</li>
+                        <li>Base deve ser entregue consolidada até o retorno de Marília (22/06)</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Indicações institucionais de última hora e alta rotatividade comprometem a completude da base</li>
+                        <li>Dependência de retorno de múltiplos órgãos externos ao DETRAN</li>
+                        <li>Fragilidade de governança: palavra final nas aprovações do PSV está na Presidência, não em Roberta ou Fred — não tomar decisões sobre o PSV sem alinhamento com Fred (coordenador Sistran-SP)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: PENDÊNCIAS DE TERCEIROS
+        ══════════════════════════════════════════ -->
+        <section id="terceiros">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">warning</span> Pendências de terceiros
+          </h2>
+          <p>Estas <strong>não são encaminhamentos futuros</strong> — são cobranças ativas que entram
+             no período já em atraso ou no limite. Pedro aciona, registra no Notion e escala para
+             Everaldo se não houver retorno dentro do prazo indicado.</p>
+
+          <div class="accordion" id="acc-terceiros">
+
+            <!-- EPT -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#terc-ept">
+                  <span class="material-icons me-2" style="font-size:1.1rem">school</span>
+                  EPT — duas pendências ativas
+                </button>
+              </h2>
+              <div id="terc-ept" class="accordion-collapse collapse show" data-bs-parent="#acc-terceiros">
+                <div class="accordion-body">
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">warning</span>
+                      Texto capítulo referências Guia C2 — vencido 01/06
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Pedro aciona EPT em 08/06. Se sem retorno em 48h, escala para Everaldo.
+                      Bloqueador da portaria e da V2 do Guia C2.
+                    </p>
+                  </div>
+
+                  <div class="pending-callout">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">warning</span>
+                      Modelagem do Curso de Educação para o Trânsito (PRaVida) — até semana de 12/06
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Fabi (EPT) comprometeu entrega até semana de 12/06. Pedro monitora e registra
+                      recebimento. Bloqueador da imersão de 15–19/06.
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- DFT -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#terc-dft">
+                  <span class="material-icons me-2" style="font-size:1.1rem">local_police</span>
+                  DFT — calibração da matriz C3
+                </button>
+              </h2>
+              <div id="terc-dft" class="accordion-collapse collapse" data-bs-parent="#acc-terceiros">
+                <div class="accordion-body">
+                  <div class="pending-callout">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">warning</span>
+                      Márcio e Maria Aparecida (DFT) — calibração da matriz de classificação C3
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Encaminhamento da reunião de 26/05. Sem prazo formal registrado, mas é insumo
+                      para os pareceres que vencem em 10/06. Pedro confirma se foi entregue antes de 08/06;
+                      se não, cobrar imediatamente.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BIGRS -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#terc-bigrs">
+                  <span class="material-icons me-2" style="font-size:1.1rem">groups</span>
+                  BIGRS — documento de trabalho imersão
+                </button>
+              </h2>
+              <div id="terc-bigrs" class="accordion-collapse collapse" data-bs-parent="#acc-terceiros">
+                <div class="accordion-body">
+                  <div class="pending-callout">
+                    <div class="callout-title">
+                      <span class="material-icons" style="font-size:1rem">warning</span>
+                      Diogo (BIGRS) — documento estratégico de trabalho para imersão 18–19/06
+                    </div>
+                    <p class="mb-0" style="font-size:.9rem">
+                      Encaminhamento da reunião C3 (26/05). Deve estar pronto antes da imersão.
+                      Pedro confirma entrega até 13/06 no máximo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /accordion terceiros -->
+        </section>
+
+        <!-- ══════════════════════════════════════════
+             SEÇÃO: SEI
+        ══════════════════════════════════════════ -->
+        <section id="sei">
+          <h2 class="section-title d-flex align-items-center gap-2">
+            <span class="material-icons">description</span> Processos SEI
+          </h2>
+          <p>Único processo com status <strong>Aberto ▸ responder</strong> e prazo dentro do período identificado.
+             Os demais processos recentes constam como Concluídos em 29/05.</p>
+
+          <div class="accordion" id="acc-sei">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sei-senatran">
+                  <span class="material-icons me-2" style="font-size:1.1rem">emoji_events</span>
+                  140.00219909/2026-91 — Prêmio SENATRAN 2026
+                </button>
+              </h2>
+              <div id="sei-senatran" class="accordion-collapse collapse show" data-bs-parent="#acc-sei">
+                <div class="accordion-body">
+                  <p>Manifestação à participação no Edital de Concurso nº 24, de 4 de maio de 2026
+                     (Prêmio SENATRAN 2026). Recebido de DETRAN/AETA. Necessidade de despacho de
+                     encaminhamento à participação.</p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge badge-pend px-2 py-1">🔴 Aberto ▸ responder</span>
+                    <span class="badge badge-date px-2 py-1">
+                      <span class="material-icons" style="font-size:.85rem;vertical-align:middle">event</span>
+                      Prazo: 30/06
+                    </span>
+                    <span class="badge badge-date px-2 py-1">Recebido em: 12/05</span>
+                    <span class="badge badge-date px-2 py-1">Mesa: DETRAN/DSV/CGSV/CIST</span>
+                  </div>
+
+                  <div class="two-col">
+                    <div>
+                      <h6>Próximos passos</h6>
+                      <ul>
+                        <li>Pedro — avaliar o processo e verificar se exige assinatura de coordenação</li>
+                        <li>Se não exigir: Pedro lança despacho de encaminhamento à participação</li>
+                        <li>Se exigir assinatura de coordenação: escalar para Everaldo antes de 20/06</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6>Riscos</h6>
+                      <ul>
+                        <li>Prazo de 30/06 não deve ser perdido — avaliar processo na primeira semana do período</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /main-content -->
+
+      <!-- ── Rodapé ── -->
+      <footer class="py-3 px-4 text-center" style="font-size:.82rem; color:#666">
+        Coordenadoria de Integração de Sistemas de Trânsito · Diretoria de Segurança Viária · Detran-SP
+      </footer>
+    </div><!-- /main-column -->
+  </div><!-- /layout-wrapper -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Highlight nav link ativo ao scrollar
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar .nav-link');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.sidebar .nav-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
