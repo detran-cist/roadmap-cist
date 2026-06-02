@@ -24,77 +24,71 @@
       margin-bottom:1.5rem;
     }
     .legend-box p { margin:0; line-height:1.6; }
-    .marcos-table { width:100%; border-collapse:collapse; font-size:.9rem; }
-    .marcos-table th {
-      background:var(--fg); color:#fff;
-      padding:.5rem .9rem; text-align:left;
-      font-size:.8rem; font-weight:700; letter-spacing:.03em;
+    /* ── Timeline ── */
+    .timeline { border-left:2px solid var(--lt); padding-left:1.5rem; margin-top:.5rem; }
+    .timeline-item { position:relative; margin-bottom:1.1rem; }
+    .timeline-item::before {
+      content:''; position:absolute; left:-1.6rem; top:.35rem;
+      width:10px; height:10px; border-radius:50%;
+      background:var(--fg); border:2px solid #fff;
+      box-shadow:0 0 0 2px var(--lt);
     }
-    .marcos-table td { padding:.55rem .9rem; border-bottom:1px solid #e9ecef; vertical-align:top; }
-    .marcos-table tr:last-child td { border-bottom:none; }
-    .marcos-table tr:hover td { background:#f5f9ff; }
-    .marcos-table td:first-child { font-weight:700; color:var(--dark); white-space:nowrap; width:110px; }
-    .marcos-table tr.critical td { background:#fff5f5; }
-    .marcos-table tr.critical td:first-child { color:#c0392b; }
+    .timeline-item.crit::before { background:#c0392b; box-shadow:0 0 0 2px #fbbfbf; }
+    .timeline-date  { font-size:.78rem; font-weight:700; color:var(--fg); margin-bottom:.1rem; }
+    .timeline-item.crit .timeline-date { color:#c0392b; }
+    .timeline-label { font-size:.93rem; font-weight:600; }
+    .timeline-sub   { font-size:.85rem; color:#555; }
+    /* ── Two col ── */
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:.75rem; }
     @media(max-width:600px){ .two-col{ grid-template-columns:1fr; } }
     .two-col h6 { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#666; margin-bottom:.4rem; }
     .two-col ul { list-style:none; padding:0; margin:0; }
     .two-col ul li { font-size:.9rem; margin-bottom:.3rem; padding-left:1em; text-indent:-1em; }
     .two-col ul li::before { content:"▸ "; color:var(--fg); }
+    /* ── Tags ── */
     .tags-row { display:flex; flex-wrap:wrap; gap:.4rem; margin:.75rem 0; }
     .tag { display:inline-flex; align-items:center; gap:.3rem; font-size:.78rem; font-weight:600;
            padding:.28rem .65rem; border-radius:2rem; background:var(--lt); color:var(--dark); }
     .tag.warn { background:#fef3c7; color:#b45309; }
     .tag.ok   { background:#E1FFE2; color:#158A19; }
-    .tag.esc  { background:#dce9f7; color:#004077; }
+    /* ── Links ── */
     .links-section { margin:.6rem 0 .9rem; }
     .links-section .lbl { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#888; display:block; margin-bottom:.4rem; }
+    /* ── Respiro entre projetos ── */
+    section + section { margin-top:2.5rem; }
   </style>
 </head>
 <body>
 <div class="page-topbar"></div>
 <div class="layout-wrapper">
 
-  <!-- ── Sidebar ── -->
+  <!-- ── Sidebar — apenas projetos principais ── -->
   <nav class="sidebar d-none d-md-block">
     <div class="sidebar-heading">Navegação</div>
     <a class="nav-link" href="#contexto"><span class="material-icons">info</span> Contexto</a>
-    <a class="nav-link" href="#marcos"><span class="material-icons">event</span> Datas-chave</a>
     <a class="nav-link" href="#pravida"><span class="material-icons">volunteer_activism</span> PRaVida</a>
-    <a class="nav-link ps-4" href="#p11"><span class="material-icons">gavel</span> Portaria</a>
-    <a class="nav-link ps-4" href="#p12"><span class="material-icons">format_list_numbered</span> Priorização</a>
-    <a class="nav-link ps-4" href="#p13"><span class="material-icons">school</span> Cursos</a>
-    <a class="nav-link ps-4" href="#p14"><span class="material-icons">fact_check</span> Ações Formativas</a>
-    <a class="nav-link ps-4" href="#p15"><span class="material-icons">folder_open</span> Transparência SEI</a>
     <a class="nav-link" href="#integracao"><span class="material-icons">hub</span> Integração</a>
-    <a class="nav-link ps-4" href="#i21"><span class="material-icons">description</span> Instrumentos PSV-SP</a>
-    <a class="nav-link ps-4" href="#i22"><span class="material-icons">handshake</span> Articulações</a>
-    <a class="nav-link ps-4" href="#i23"><span class="material-icons">contacts</span> CRM</a>
+    <a class="nav-link" href="#marcos"><span class="material-icons">event</span> Datas-chave</a>
   </nav>
 
   <!-- ── Mobile nav ── -->
   <div class="mobile-nav d-md-none w-100 d-flex flex-wrap gap-1">
     <a class="nav-link" href="#contexto"><span class="material-icons" style="font-size:.9rem">info</span></a>
-    <a class="nav-link" href="#marcos"><span class="material-icons" style="font-size:.9rem">event</span></a>
     <a class="nav-link" href="#pravida"><span class="material-icons" style="font-size:.9rem">volunteer_activism</span></a>
     <a class="nav-link" href="#integracao"><span class="material-icons" style="font-size:.9rem">hub</span></a>
+    <a class="nav-link" href="#marcos"><span class="material-icons" style="font-size:.9rem">event</span></a>
   </div>
 
   <div class="main-column">
     <div class="main-content">
 
-      <!-- ── Header ── -->
+      <!-- ── Header — padrão COST ── -->
       <div class="identity-block">
-        <div class="d-flex align-items-center gap-3 mb-2">
-          <img src="https://www.detran.sp.gov.br/702a783633529610cd8381ac4f5c7b5b.iix" alt="Detran-SP" style="height:42px;flex-shrink:0" />
-          <div>
-            <h1 class="fw-bold mb-0" style="color:var(--dark);font-size:1.55rem;line-height:1.2">Roadmap CIST</h1>
-            <p class="mb-0" style="font-size:.88rem;color:#555">Andamento de projetos em junho de 2026</p>
-          </div>
-        </div>
+        <img src="https://www.detran.sp.gov.br/702a783633529610cd8381ac4f5c7b5b.iix" alt="Detran-SP" style="height:42px;display:block;margin-bottom:1rem" />
+        <h1 class="fw-bold mb-1" style="color:var(--dark);font-size:1.55rem;line-height:1.2">Roadmap CIST</h1>
+        <p class="mb-1" style="font-size:.88rem;color:#555">Andamento de projetos em junho de 2026</p>
         <p class="mb-0" style="font-size:.82rem;color:#666">
-          Substituto: <strong>Pedro Borges dos Santos</strong>, conforme Portaria de Pessoal Detran-SP nº 1693, de 22 de outubro de 2025 &nbsp;·&nbsp; Atualizado em DD/MM/AAAA
+          Substituto: <strong>Pedro Borges dos Santos</strong>, conforme Portaria de Pessoal Detran-SP nº 1693, de 22 de outubro de 2025 &nbsp;·&nbsp; Atualizado em 03/06/2026
         </p>
       </div>
 
@@ -112,26 +106,6 @@
         </div>
       </section>
 
-      <!-- ══ DATAS-CHAVE ══ -->
-      <section id="marcos">
-        <h2 class="section-title d-flex align-items-center gap-2">
-          <span class="material-icons">event</span> Datas-chave do Período
-        </h2>
-        <p>Referência de datas para orientação do substituto.</p>
-        <table class="marcos-table">
-          <thead><tr><th>Data</th><th>Item</th></tr></thead>
-          <tbody>
-            <tr><td>10/06</td><td>Pareceres C1 e C3 fechados + Painel v2.0 disponível — base para 12/06</td></tr>
-            <tr><td>12/06</td><td>Apresentação lista de priorização para DSV ⚠️ + entregas DIST (convite, ficha, devolutiva)</td></tr>
-            <tr><td>15–19/06</td><td>Estratégia e articulação para atendimento 1:1 com os municípios</td></tr>
-            <tr><td>18–19/06</td><td>Imersão DFT/DSV+BIGRS (Conteúdos cursos C1 e C3) + Apresentação de modelagem e conteúdo C2 — EPT</td></tr>
-            <tr><td>22/06</td><td>Retorno de Marília Hildebrand (coordenação CIST) + v1.0 base de contatos — COST + DIST</td></tr>
-            <tr><td>30/06</td><td>Validação da modelagem dos cursos PRaVida pelas áreas de negócio ⚠️ + prazo SEI Prêmio SENATRAN</td></tr>
-            <tr class="critical"><td>04/07</td><td>🔴 Início defeso eleitoral — restrições de marca e brasão</td></tr>
-          </tbody>
-        </table>
-      </section>
-
       <!-- ══════════════════════════════════════
            PRAVIDA
       ══════════════════════════════════════ -->
@@ -144,7 +118,7 @@
         <div class="accordion" id="acc-pravida">
 
           <!-- 1.1 Portaria -->
-          <div class="accordion-item" id="p11">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c11">
                 <span class="material-icons me-2" style="font-size:1.1rem">gavel</span>
@@ -159,7 +133,6 @@
                   <span class="tag">Painel de Gestão: Não</span>
                   <span class="tag warn">Status: Aguardando validação</span>
                   <span class="tag">Áreas: DSV/CGSV/CIST · DSV/EPT/CET</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -173,7 +146,7 @@
                     <h6>Próximos passos</h6>
                     <ul>
                       <li><strong>01/06 - CGSV:</strong> Cobrar texto EPT (Guia C2) — prazo vencido 29/05 ⚠️</li>
-                      <li><strong>[data a definir] - CGSV:</strong> Consolidação do texto da portaria</li>
+                      <li><strong>[data a definir] - CGSV:</strong> Consolidação do texto da portaria ⚠️</li>
                       <li><strong>[após validação] - GAB/DSV:</strong> Encaminhar para tramitação da DGR</li>
                     </ul>
                   </div>
@@ -190,7 +163,7 @@
           </div>
 
           <!-- 1.2 Priorização -->
-          <div class="accordion-item" id="p12">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c12">
                 <span class="material-icons me-2" style="font-size:1.1rem">format_list_numbered</span>
@@ -205,7 +178,6 @@
                   <span class="tag ok">Painel de Gestão: Sim</span>
                   <span class="tag warn">Status: Em execução</span>
                   <span class="tag">Áreas: DSV/CIST/DENT · DFT/CGFT/CFT</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -224,7 +196,7 @@
                       <li><strong>10/06 - DFT/CGFT/CFT (Júlio Ferreira):</strong> Validação de matriz de classificação C3</li>
                       <li><strong>10/06 - SIM (Arthur Nishiyama, acompanhamento Pedro):</strong> Painel Executivo PRaVida v2.0 disponível com lista de priorização</li>
                       <li><strong>10/06 - CGSV:</strong> Alinhamento da lista de priorização ⚠️</li>
-                      <li><strong>12/06:</strong> Apresentação da lista de priorização (C1 e C3) para DSV — acompanhamento COST + CGSV e definição de estratégia de atendimento com os municípios</li>
+                      <li><strong>12/06:</strong> Apresentação da lista de priorização (C1 e C3) para DSV — acompanhamento COST + CGSV e definição de estratégia de atendimento com os municípios ⚠️</li>
                       <li><strong>15–19/06:</strong> Estratégia e articulação para atendimento 1:1 com os municípios</li>
                     </ul>
                   </div>
@@ -243,7 +215,7 @@
           </div>
 
           <!-- 1.3 Cursos -->
-          <div class="accordion-item" id="p13">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c13">
                 <span class="material-icons me-2" style="font-size:1.1rem">school</span>
@@ -258,7 +230,6 @@
                   <span class="tag warn">Painel de Gestão: Parcial (C1)</span>
                   <span class="tag warn">Status: Em elaboração</span>
                   <span class="tag">Áreas: DSV/CGSV/CIST · DSV/EPT/CET · DFT/CGFT/CFT</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -290,7 +261,7 @@
           </div>
 
           <!-- 1.4 Ações Formativas -->
-          <div class="accordion-item" id="p14">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c14">
                 <span class="material-icons me-2" style="font-size:1.1rem">fact_check</span>
@@ -305,7 +276,6 @@
                   <span class="tag">Painel de Gestão: Não</span>
                   <span class="tag warn">Status: Em execução</span>
                   <span class="tag">Áreas: CGSV/CIST · EPT/CET</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -320,7 +290,7 @@
                       <li><strong>[data a definir] - EPT (Thomas Chequetto):</strong> Devolução com acréscimos na pauta da agenda de 28/05</li>
                       <li><strong>28/05 - EPT:</strong> Avaliar proposta de formulário ⚠️ Atrasado</li>
                       <li><strong>12/06 - EPT:</strong> Tratamento das bases de coleta anteriores para consolidação das presenças</li>
-                      <li><strong>22–26/06 - EPT+CGSV:</strong> Reunião de acompanhamento para avaliação dos encaminhamentos e definição de próximos passos antes da validação DSV até 30/06</li>
+                      <li><strong>22–26/06 - EPT+CGSV:</strong> Reunião de acompanhamento para avaliação dos encaminhamentos e definição de próximos passos antes da validação DSV até 30/06 ⚠️</li>
                     </ul>
                   </div>
                   <div>
@@ -336,12 +306,11 @@
           </div>
 
           <!-- 1.5 Transparência SEI -->
-          <div class="accordion-item" id="p15">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c15">
                 <span class="material-icons me-2" style="font-size:1.1rem">folder_open</span>
                 1.5 Transparência do Processo de Adesão
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c15" class="accordion-collapse collapse" data-bs-parent="#acc-pravida">
@@ -351,7 +320,6 @@
                   <span class="tag">Painel de Gestão: Não</span>
                   <span class="tag warn">Status: Em execução</span>
                   <span class="tag">Áreas: DPESV/SIM/SGR</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -398,7 +366,7 @@
         <div class="accordion" id="acc-integracao">
 
           <!-- 2.1 Instrumentos -->
-          <div class="accordion-item" id="i21">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c21">
                 <span class="material-icons me-2" style="font-size:1.1rem">description</span>
@@ -413,7 +381,6 @@
                   <span class="tag warn">Painel de Gestão: Parcial (banco de dados)</span>
                   <span class="tag warn">Status: Em execução</span>
                   <span class="tag">Áreas: CIST/DIST · COST/DRML</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -445,7 +412,7 @@
           </div>
 
           <!-- 2.2 Articulações -->
-          <div class="accordion-item" id="i22">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c22">
                 <span class="material-icons me-2" style="font-size:1.1rem">handshake</span>
@@ -460,7 +427,6 @@
                   <span class="tag">Painel de Gestão: Não</span>
                   <span class="tag warn">Status: Em execução</span>
                   <span class="tag">Áreas: CIST/DIST · CGSV</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -476,8 +442,8 @@
                       <li><strong>08/06 - DESEG:</strong> Envio prévio da descrição da demanda de dados (NT3 Saúde) para Dra. Cátia com apoio técnico da Aline</li>
                       <li><strong>09/06 - DIST+COST:</strong> Evento SES — contato presencial com Dra. Cátia sobre dados via métodos internos</li>
                       <li><strong>12/06 - DIST:</strong> Estratégia de integração com SSP ⚠️ Avaliar com Everaldo ponto de contato com DFT e envolvimento do Fred via SISTRAN-SP</li>
-                      <li><strong>[data a definir]:</strong> Decisão sobre como avançar na interação SES/PSV-SP ⚠️ Validação CGSV</li>
-                      <li><strong>[pendente] - CGSV:</strong> Validação e encaminhamento do parecer DIST para DSV — encaminhamento aberto desde 29/05</li>
+                      <li><strong>[data a definir]:</strong> Decisão sobre como avançar na interação SES/PSV-SP ⚠️</li>
+                      <li><strong>[pendente] - CGSV:</strong> Validação e encaminhamento do parecer DIST para DSV — encaminhamento aberto desde 29/05 ⚠️</li>
                     </ul>
                   </div>
                   <div>
@@ -495,7 +461,7 @@
           </div>
 
           <!-- 2.3 CRM -->
-          <div class="accordion-item" id="i23">
+          <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c23">
                 <span class="material-icons me-2" style="font-size:1.1rem">contacts</span>
@@ -505,12 +471,11 @@
             </h2>
             <div id="c23" class="accordion-collapse collapse" data-bs-parent="#acc-integracao">
               <div class="accordion-body">
-                <p>Aplicação em desenvolvimento pela DTI para gestão de relacionamento com stakeholders e integração com municípios. Integração prevista com a base de dados de contatos do PSV-SP. Reunião de socialização de protótipo realizada em 30/05 — Arthur acompanhou de perto.</p>
+                <p>Aplicação em desenvolvimento pela DTI para gestão de relacionamento com stakeholders e integração com municípios. Integração prevista com a base de dados de contatos do PSV-SP. Reunião de socialização de protótipo realizada em 29/05 — Arthur acompanhou de perto.</p>
                 <div class="tags-row">
                   <span class="tag ok">Painel de Gestão: Sim</span>
                   <span class="tag warn">Status: Em execução</span>
                   <span class="tag">Áreas: CIST/DIST · CIST/DPESV/SIM</span>
-                  <span class="tag esc">⚠️ Validação CGSV: Sim</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -521,7 +486,7 @@
                     <h6>Próximos passos</h6>
                     <ul>
                       <li><strong>03/06 - DIST + DTI:</strong> Atualização do painel com nova data do protótipo v1.0 (atraso de ~2 semanas por problemas técnicos)</li>
-                      <li><strong>08/06 - Pedro:</strong> Solicitar ata/registro da reunião de socialização de 30/05 a Arthur</li>
+                      <li><strong>08/06 - Pedro:</strong> Solicitar ata/registro da reunião de socialização de 29/05 a Arthur</li>
                       <li><strong>22/06 - DIST:</strong> Verificar compatibilidade entre v1.0 do banco de contatos e arquitetura do CRM</li>
                     </ul>
                   </div>
@@ -540,6 +505,49 @@
         </div><!-- /acc-integracao -->
       </section>
 
+      <!-- ══ DATAS-CHAVE — ao final, estilo timeline ══ -->
+      <section id="marcos">
+        <h2 class="section-title d-flex align-items-center gap-2">
+          <span class="material-icons">event</span> Datas-chave do Período
+        </h2>
+        <p>Referência de marcos para orientação do substituto.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">10/06</div>
+            <div class="timeline-label">Pareceres C1 e C3 fechados + Painel v2.0 disponível</div>
+            <div class="timeline-sub">Base para a apresentação de 12/06</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">12/06</div>
+            <div class="timeline-label">Apresentação lista de priorização para DSV ⚠️</div>
+            <div class="timeline-sub">Entregas DIST: convite, ficha do ente e devolutiva</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">15–19/06</div>
+            <div class="timeline-label">Estratégia e articulação para atendimento 1:1 com os municípios</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">18–19/06</div>
+            <div class="timeline-label">Imersão DFT/DSV+BIGRS — Conteúdos cursos C1 e C3</div>
+            <div class="timeline-sub">Apresentação de modelagem e conteúdo C2 — EPT</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">22/06</div>
+            <div class="timeline-label">Retorno de Marília Hildebrand (coordenação CIST)</div>
+            <div class="timeline-sub">v1.0 base de contatos — COST + DIST</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">30/06</div>
+            <div class="timeline-label">Validação da modelagem dos cursos PRaVida pelas áreas de negócio ⚠️</div>
+            <div class="timeline-sub">Prazo SEI Prêmio SENATRAN (140.00219909/2026-91)</div>
+          </div>
+          <div class="timeline-item crit">
+            <div class="timeline-date">04/07</div>
+            <div class="timeline-label">🔴 Início defeso eleitoral — restrições de marca e brasão</div>
+          </div>
+        </div>
+      </section>
+
     </div><!-- /main-content -->
 
     <footer class="py-3 px-4 text-center" style="font-size:.82rem;color:#888">
@@ -550,7 +558,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  const sections = document.querySelectorAll('section[id], .accordion-item[id]');
+  const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.sidebar .nav-link');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -560,7 +568,7 @@
         if (a) a.classList.add('active');
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.2 });
   sections.forEach(s => observer.observe(s));
 </script>
 </body>
