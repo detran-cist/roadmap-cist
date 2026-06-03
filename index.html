@@ -46,13 +46,13 @@
     .two-col ul li { font-size:.9rem; margin-bottom:.3rem; padding-left:1em; text-indent:-1em; }
     .two-col ul li::before { content:"▸ "; color:var(--fg); }
     /* ── Tags ── */
-    .tags-row { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; margin:.75rem 0; align-items:center; }
-    .tag-item { display:inline-flex; align-items:center; gap:.3rem; font-size:.82rem; }
-    .tag-label { font-weight:700; color:#333; }
-    .tag-val { color:#555; }
-    .tag-val-green { color:#158A19; font-weight:600; }
-    .tag-val-red { color:#c0392b; font-weight:600; }
-    .tag-val-area { color:#888; }
+    .tags-row { display:flex; flex-wrap:wrap; gap:.4rem; margin:.75rem 0; }
+    .tag { display:inline-flex; align-items:center; gap:.3rem; font-size:.78rem; font-weight:600;
+           padding:.28rem .65rem; border-radius:2rem; background:var(--lt); color:var(--dark); }
+    .tag.ok     { background:#E1FFE2; color:#158A19; }
+    .tag.warn   { background:#fef3c7; color:#b45309; }
+    .tag.danger { background:#fde8e8; color:#c0392b; }
+    .tag.area   { background:#ececec; color:#666; }
     /* ── Links ── */
     .links-section { margin:.6rem 0 .9rem; }
     .links-section .lbl { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#888; display:block; margin-bottom:.4rem; }
@@ -131,9 +131,9 @@
               <div class="accordion-body">
                 <p>Minuta concluída e encaminhada para validação em 29/05. Institui os guias do PRaVida por portaria única, com mecanismo de atualização por troca de anexo. Dois bloqueadores ativos: validação CGSV e entrega do capítulo de referências do Guia C2 pela EPT. Everaldo será o ponto focal de articulação junto à EPT.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Aguardando validação</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DSV/CGSV/CIST · DSV/EPT/CET</span></span>
+                  <span class="tag danger">Painel de Gestão: Não</span>
+                  <span class="tag danger">Status: Aguardando validação</span>
+                  <span class="tag area">Áreas: DSV/CGSV/CIST · DSV/EPT/CET</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -175,9 +175,9 @@
               <div class="accordion-body">
                 <p>Classificação de municípios em análise por Taxa Média de Óbito (últimos 3 anos), pontuação por critérios objetivos (escala 1–3), consolidado em pareceres técnicos individuais por município. Função dos pareceres: resguardo institucional — não instrumento de seleção.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-green">Sim</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DSV/CIST/DENT · DFT/CGFT/CFT</span></span>
+                  <span class="tag ok">Painel de Gestão: Sim</span>
+                  <span class="tag warn">Status: Em execução</span>
+                  <span class="tag area">Áreas: DSV/CIST/DENT · DFT/CGFT/CFT</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -226,9 +226,9 @@
               <div class="accordion-body">
                 <p>Estruturação de modelagem de cursos específicos para cada componente a partir de previsão de conteúdos e carga horária inicial, considerando responsabilidade da EPT no desenvolvimento de conteúdo de Educação, definição de ferramentas e apoio operacional dos cursos e responsabilidade técnica da CGSV e CGFT nos conteúdos dos componentes 1 e 3.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val">Parcial (C1)</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em elaboração</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DSV/CGSV/CIST · DSV/EPT/CET · DFT/CGFT/CFT</span></span>
+                  <span class="tag warn">Painel de Gestão: Parcial (C1)</span>
+                  <span class="tag warn">Status: Em elaboração</span>
+                  <span class="tag area">Áreas: DSV/CGSV/CIST · DSV/EPT/CET · DFT/CGFT/CFT</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -271,9 +271,9 @@
               <div class="accordion-body">
                 <p>Frente sob responsabilidade operacional da EPT, com estabelecimento de regras de negócio da CIST. Envolve o saneamento de listas de coleta de presença anteriores e a definição de formato e ferramentas para os cursos do 2º semestre e tratamento das bases de dados. Imersões de 15–19/06 dependem de insumos da modelagem da EPT.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CGSV/CIST · EPT/CET</span></span>
+                  <span class="tag danger">Painel de Gestão: Não</span>
+                  <span class="tag warn">Status: Em execução</span>
+                  <span class="tag area">Áreas: CGSV/CIST · EPT/CET</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -315,9 +315,9 @@
               <div class="accordion-body">
                 <p>Estruturação de um SEI único para consolidar o histórico completo de participação dos municípios no PRaVida — documentação enviada, pareceres do Detran e informações do CSM — organizado na árvore por município. A proposta foi alinhada com a DTI em 20/05.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DPESV/SIM/SGR</span></span>
+                  <span class="tag danger">Painel de Gestão: Não</span>
+                  <span class="tag warn">Status: Em execução</span>
+                  <span class="tag area">Áreas: DPESV/SIM/SGR</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -375,9 +375,9 @@
               <div class="accordion-body">
                 <p>Conjunto de instrumentos de documentação e comunicação para estruturar as reuniões técnicas do PSV-SP: ficha do ente (mapeamento de sensibilidades, riscos e oportunidades por organização), modelo de convite e modelo de devolutiva das reuniões mensais. A COST subsidia com as regras de negócio e a DIST integra informações ao banco de dados de contatos.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val">Parcial (banco de dados)</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CIST/DIST · COST/DRML</span></span>
+                  <span class="tag warn">Painel de Gestão: Parcial (banco de dados)</span>
+                  <span class="tag warn">Status: Em execução</span>
+                  <span class="tag area">Áreas: CIST/DIST · COST/DRML</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -387,9 +387,10 @@
                   <div>
                     <h6>Próximos passos</h6>
                     <ul>
-                      <li><strong>03/06 - DIST:</strong> Entrega do onepager de integração das reuniões técnicas</li>
+                      <li><s><strong>03/06 - DIST:</strong> Entrega do onepager de integração das reuniões técnicas</s> → <strong>12/06 — repactuado</strong></li>
                       <li><strong>08/06 - DIST:</strong> Cadastrar projeto de criação de base com os contatos no painel de gestão da DSV</li>
                       <li><strong>12/06 - DIST:</strong> Apresentação de modelo de convite, ficha do ente e modelo de devolutiva das reuniões mensais</li>
+                      <li><strong>⚠️ Atenção:</strong> 12/06 concentra múltiplas entregas da DIST (onepager + ficha do ente + modelo de convite + devolutiva + detalhamento SSP). Avaliar capacidade de execução com Edu.</li>
                       <li><strong>22/06 - DIST:</strong> v1.0 base de contatos operacional, observando integração com CRM em desenvolvimento pela DTI</li>
                       <li><strong>[Semanal] - DIST:</strong> Retroalimentação considerando variáveis das instâncias de participação, eixos, cargos e informações dos envolvidos</li>
                     </ul>
@@ -420,26 +421,31 @@
               <div class="accordion-body">
                 <p>Acompanhamento das articulações da DIST com parceiros externos. Nenhum desses aspectos gera ação autônoma do substituto — o papel é monitorar, registrar e escalar para a Coordenação Geral quando necessário.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CIST/DIST · CGSV</span></span>
+                  <span class="tag danger">Painel de Gestão: Não</span>
+                  <span class="tag warn">Status: Em execução</span>
+                  <span class="tag area">Áreas: CIST/DIST · CGSV</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
                   <div class="d-flex flex-wrap gap-2">
-                    <a href="https://governosp.sharepoint.com/:b:/t/DETRAN-CoordenadoriadeSeguranaViria/IQD0DhqhiZY5QKyRtQfV81v2Ab5fAlU4Zeb5hta1UysVXdA?e=VQHLRW" class="doc-link" target="_blank"><span class="material-icons">picture_as_pdf</span> Parecer DIST — ACT ONSV (TCT nº 18/2023)</a>
+                    <a href="https://governosp.sharepoint.com/:b:/t/DETRAN-CoordenadoriadeSeguranaViria/IQBSEtd1xLjmTazSzDcN-IZfAdl1yItKPmPvKVRYCESsBoM?e=qtsEW0" class="doc-link" target="_blank"><span class="material-icons">picture_as_pdf</span> Parecer DIST — ACT ONSV V.2 (TCT nº 18/2023)</a>
                   </div>
                 </div>
                 <div class="two-col">
                   <div>
                     <h6>Próximos passos</h6>
                     <ul>
-                      <li><strong>03/06 - CGSV-COST + DIST:</strong> Reunião GCM — articulações para o RST</li>
+                      <li><strong>03/06 - CGSV-COST + DIST:</strong> Reunião GCM realizada — primeira aproximação de apoio à CGSV para articulações do RST ✓</li>
+                      <li><strong>01/06 ✓</strong> NT03 apresentada com sucesso na reunião recorrente da SES — SES comprometida a disponibilizar dados para aprimoramento do estudo, tratamento em curso com DESEG</li>
                       <li><strong>08/06 - DESEG:</strong> Envio prévio da descrição da demanda de dados (NT3 Saúde) para Dra. Cátia com apoio técnico da Aline</li>
-                      <li><strong>09/06 - DIST+COST:</strong> Evento SES — contato presencial com Dra. Cátia sobre dados via métodos internos</li>
+                      <li><strong>09/06 - DIST+COST:</strong> Webconferência Vigilância sobre PSV + contato com Dra. Cátia sobre dados via métodos internos</li>
+                      <li><strong>[pendente] - CGSV:</strong> Orientação sobre encaminhamento da íntegra da nota técnica ⚠️</li>
+                      <li><strong>[pendente] - DEST:</strong> Detalhamento técnico necessário para encaminhamentos com GIS</li>
                       <li><strong>12/06 - DIST:</strong> Estratégia de integração com SSP ⚠️ Avaliar com Everaldo ponto de contato com DFT e envolvimento do Fred via SISTRAN-SP</li>
                       <li><strong>[data a definir]:</strong> Decisão sobre como avançar na interação SES/PSV-SP ⚠️</li>
-                      <li><strong>[pendente] - CGSV:</strong> Validação e encaminhamento do parecer DIST para DSV — encaminhamento aberto desde 29/05 ⚠️</li>
+                      <li><strong>[pendente] - CGSV (Everaldo):</strong> Validar parecer DIST V.2 e compartilhar com COST e EPT — encaminhado em 02/06 ⚠️</li>
+                      <li><strong>[semana de 09/06] - CGSV:</strong> Reunião com ONSV (Giselle Marinho, Diretora de Impacto Social) por intermédio de Everaldo — condicionada à autorização da Diretoria (Roberta) ⚠️</li>
+                      <li><strong>Pré-requisito:</strong> Questões do parecer definidas internamente e acordadas entre COST e EPT antes de propor retomada com o ONSV</li>
                     </ul>
                   </div>
                   <div>
@@ -452,6 +458,60 @@
                     </ul>
                   </div>
                 </div>
+
+                <div style="margin-top:1rem">
+                  <h6 style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#666;margin-bottom:.75rem">Acompanhamentos adicionais</h6>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">hub</span> SISTRAN</div>
+                    <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Apoio na organização e mobilização para reuniões técnicas 23–26/06</li>
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Checkpoints diários de acompanhamento COST/DRML/SISTRAN</li>
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Pedro analisando planilhas de contatos para estruturação pré-CRM</li>
+                      <li style="padding-left:1em;text-indent:-1em">▸ <strong>15/06:</strong> Início do esforço de mobilização pré-reuniões</li>
+                    </ul>
+                  </div>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">school</span> SEDUC</div>
+                    <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Reunião de acompanhamento realizada em 01/06 ✓</li>
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ <strong>11/06 - DIST:</strong> Parecer DIST</li>
+                      <li style="padding-left:1em;text-indent:-1em">▸ <strong>11/06 - DIST:</strong> Resumo de encaminhamentos derivados de conversas no evento das Diretrizes Curriculares</li>
+                    </ul>
+                  </div>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">road</span> DER</div>
+                    <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Reunião sobre dados realizada em 14/05 ✓</li>
+                      <li style="padding-left:1em;text-indent:-1em">▸ Aguardando detalhamento técnico da DEST para dar encaminhamento junto ao DER</li>
+                    </ul>
+                  </div>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">architecture</span> CAU</div>
+                    <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
+                      <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Documento entregue à Roberta; lembrada em 02/06</li>
+                      <li style="padding-left:1em;text-indent:-1em">▸ Aguardando retorno da Diretoria</li>
+                    </ul>
+                  </div>
+
+                  <div class="pending-callout mb-3">
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">smartphone</span> Empresas de aplicativos</div>
+                    <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
+                      <li style="padding-left:1em;text-indent:-1em">▸ Roberta solicitou reenvio de documentações em 02/06 — em compasso de espera</li>
+                    </ul>
+                  </div>
+
+                  <div class="pending-callout">
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">emoji_events</span> III Fórum Regional de Segurança Viária</div>
+                    <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
+                      <li style="padding-left:1em;text-indent:-1em">▸ <strong>10/06 - DIST:</strong> Participação no III Fórum Regional de Segurança Viária</li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -468,9 +528,9 @@
               <div class="accordion-body">
                 <p>Aplicação em desenvolvimento pela DTI para gestão de relacionamento com stakeholders e integração com municípios. Integração prevista com a base de dados de contatos do PSV-SP. Reunião de socialização de protótipo realizada em 29/05 — Arthur acompanhou de perto.</p>
                 <div class="tags-row">
-                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-green">Sim</span></span>
-                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
-                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CIST/DIST · CIST/DPESV/SIM</span></span>
+                  <span class="tag ok">Painel de Gestão: Sim</span>
+                  <span class="tag ok">Status: Card atualizado no painel</span>
+                  <span class="tag area">Áreas: CIST/DIST · CIST/DPESV/SIM</span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
