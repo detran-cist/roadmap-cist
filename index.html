@@ -26,18 +26,18 @@
     .legend-box p { margin:0; line-height:1.6; }
     /* ── Timeline ── */
     .timeline { border-left:2px solid var(--lt); padding-left:1.5rem; margin-top:.5rem; }
-    .timeline-item { position:relative; margin-bottom:1.1rem; }
+    .timeline-item { position:relative; margin-bottom:.9rem; display:flex; align-items:center; gap:.75rem; }
     .timeline-item::before {
-      content:''; position:absolute; left:-1.6rem; top:.35rem;
-      width:10px; height:10px; border-radius:50%;
+      content:''; position:absolute; left:-1.6rem; top:50%;
+      transform:translateY(-50%);
+      width:10px; height:10px; border-radius:50%; flex-shrink:0;
       background:var(--fg); border:2px solid #fff;
       box-shadow:0 0 0 2px var(--lt);
     }
     .timeline-item.crit::before { background:#c0392b; box-shadow:0 0 0 2px #fbbfbf; }
-    .timeline-date  { font-size:.78rem; font-weight:700; color:var(--fg); margin-bottom:.1rem; }
+    .timeline-date { font-size:.82rem; font-weight:700; color:var(--fg); white-space:nowrap; min-width:62px; }
     .timeline-item.crit .timeline-date { color:#c0392b; }
-    .timeline-label { font-size:.93rem; font-weight:600; }
-    .timeline-sub   { font-size:.85rem; color:#555; }
+    .timeline-text { font-size:.9rem; }
     /* ── Two col ── */
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:.75rem; }
     @media(max-width:600px){ .two-col{ grid-template-columns:1fr; } }
@@ -46,11 +46,13 @@
     .two-col ul li { font-size:.9rem; margin-bottom:.3rem; padding-left:1em; text-indent:-1em; }
     .two-col ul li::before { content:"▸ "; color:var(--fg); }
     /* ── Tags ── */
-    .tags-row { display:flex; flex-wrap:wrap; gap:.4rem; margin:.75rem 0; }
-    .tag { display:inline-flex; align-items:center; gap:.3rem; font-size:.78rem; font-weight:600;
-           padding:.28rem .65rem; border-radius:2rem; background:var(--lt); color:var(--dark); }
-    .tag.warn { background:#fef3c7; color:#b45309; }
-    .tag.ok   { background:#E1FFE2; color:#158A19; }
+    .tags-row { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; margin:.75rem 0; align-items:center; }
+    .tag-item { display:inline-flex; align-items:center; gap:.3rem; font-size:.82rem; }
+    .tag-label { font-weight:700; color:#333; }
+    .tag-val { color:#555; }
+    .tag-val-green { color:#158A19; font-weight:600; }
+    .tag-val-red { color:#c0392b; font-weight:600; }
+    .tag-val-area { color:#888; }
     /* ── Links ── */
     .links-section { margin:.6rem 0 .9rem; }
     .links-section .lbl { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#888; display:block; margin-bottom:.4rem; }
@@ -88,7 +90,7 @@
         <h1 class="fw-bold mb-1" style="color:var(--dark);font-size:1.55rem;line-height:1.2">Roadmap CIST</h1>
         <p class="mb-1" style="font-size:.88rem;color:#555">Andamento de projetos em junho de 2026</p>
         <p class="mb-0" style="font-size:.82rem;color:#666">
-          Substituto: <strong>Pedro Borges dos Santos</strong>, conforme Portaria de Pessoal Detran-SP nº 1693, de 22 de outubro de 2025 &nbsp;·&nbsp; Atualizado em 03/06/2026
+          Substituto: <strong>Pedro Augusto Borges dos Santos</strong>, conforme Portaria de Pessoal Detran-SP nº 1693, de 22 de outubro de 2025 &nbsp;·&nbsp; Atualizado em 03/06/2026
         </p>
       </div>
 
@@ -123,16 +125,15 @@
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c11">
                 <span class="material-icons me-2" style="font-size:1.1rem">gavel</span>
                 1.1 Portaria de Institucionalização dos Guias PRaVida
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c11" class="accordion-collapse collapse show" data-bs-parent="#acc-pravida">
               <div class="accordion-body">
                 <p>Minuta concluída e encaminhada para validação em 29/05. Institui os guias do PRaVida por portaria única, com mecanismo de atualização por troca de anexo. Dois bloqueadores ativos: validação CGSV e entrega do capítulo de referências do Guia C2 pela EPT. Everaldo será o ponto focal de articulação junto à EPT.</p>
                 <div class="tags-row">
-                  <span class="tag">Painel de Gestão: Não</span>
-                  <span class="tag warn">Status: Aguardando validação</span>
-                  <span class="tag">Áreas: DSV/CGSV/CIST · DSV/EPT/CET</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Aguardando validação</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DSV/CGSV/CIST · DSV/EPT/CET</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -168,16 +169,15 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c12">
                 <span class="material-icons me-2" style="font-size:1.1rem">format_list_numbered</span>
                 1.2 Lista de Priorização de Municípios
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c12" class="accordion-collapse collapse" data-bs-parent="#acc-pravida">
               <div class="accordion-body">
                 <p>Classificação de municípios em análise por Taxa Média de Óbito (últimos 3 anos), pontuação por critérios objetivos (escala 1–3), consolidado em pareceres técnicos individuais por município. Função dos pareceres: resguardo institucional — não instrumento de seleção.</p>
                 <div class="tags-row">
-                  <span class="tag ok">Painel de Gestão: Sim</span>
-                  <span class="tag warn">Status: Em execução</span>
-                  <span class="tag">Áreas: DSV/CIST/DENT · DFT/CGFT/CFT</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-green">Sim</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DSV/CIST/DENT · DFT/CGFT/CFT</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -220,16 +220,15 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c13">
                 <span class="material-icons me-2" style="font-size:1.1rem">school</span>
                 1.3 Modelagem de Cursos Temáticos C1, C2 e C3
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c13" class="accordion-collapse collapse" data-bs-parent="#acc-pravida">
               <div class="accordion-body">
                 <p>Estruturação de modelagem de cursos específicos para cada componente a partir de previsão de conteúdos e carga horária inicial, considerando responsabilidade da EPT no desenvolvimento de conteúdo de Educação, definição de ferramentas e apoio operacional dos cursos e responsabilidade técnica da CGSV e CGFT nos conteúdos dos componentes 1 e 3.</p>
                 <div class="tags-row">
-                  <span class="tag warn">Painel de Gestão: Parcial (C1)</span>
-                  <span class="tag warn">Status: Em elaboração</span>
-                  <span class="tag">Áreas: DSV/CGSV/CIST · DSV/EPT/CET · DFT/CGFT/CFT</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val">Parcial (C1)</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em elaboração</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DSV/CGSV/CIST · DSV/EPT/CET · DFT/CGFT/CFT</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -266,16 +265,15 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c14">
                 <span class="material-icons me-2" style="font-size:1.1rem">fact_check</span>
                 1.4 Gestão das Ações Formativas
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c14" class="accordion-collapse collapse" data-bs-parent="#acc-pravida">
               <div class="accordion-body">
                 <p>Frente sob responsabilidade operacional da EPT, com estabelecimento de regras de negócio da CIST. Envolve o saneamento de listas de coleta de presença anteriores e a definição de formato e ferramentas para os cursos do 2º semestre e tratamento das bases de dados. Imersões de 15–19/06 dependem de insumos da modelagem da EPT.</p>
                 <div class="tags-row">
-                  <span class="tag">Painel de Gestão: Não</span>
-                  <span class="tag warn">Status: Em execução</span>
-                  <span class="tag">Áreas: CGSV/CIST · EPT/CET</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CGSV/CIST · EPT/CET</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -317,9 +315,9 @@
               <div class="accordion-body">
                 <p>Estruturação de um SEI único para consolidar o histórico completo de participação dos municípios no PRaVida — documentação enviada, pareceres do Detran e informações do CSM — organizado na árvore por município. A proposta foi alinhada com a DTI em 20/05.</p>
                 <div class="tags-row">
-                  <span class="tag">Painel de Gestão: Não</span>
-                  <span class="tag warn">Status: Em execução</span>
-                  <span class="tag">Áreas: DPESV/SIM/SGR</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">DPESV/SIM/SGR</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -371,16 +369,15 @@
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c21">
                 <span class="material-icons me-2" style="font-size:1.1rem">description</span>
                 2.1 Instrumentos de Apoio ao PSV-SP
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c21" class="accordion-collapse collapse show" data-bs-parent="#acc-integracao">
               <div class="accordion-body">
                 <p>Conjunto de instrumentos de documentação e comunicação para estruturar as reuniões técnicas do PSV-SP: ficha do ente (mapeamento de sensibilidades, riscos e oportunidades por organização), modelo de convite e modelo de devolutiva das reuniões mensais. A COST subsidia com as regras de negócio e a DIST integra informações ao banco de dados de contatos.</p>
                 <div class="tags-row">
-                  <span class="tag warn">Painel de Gestão: Parcial (banco de dados)</span>
-                  <span class="tag warn">Status: Em execução</span>
-                  <span class="tag">Áreas: CIST/DIST · COST/DRML</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val">Parcial (banco de dados)</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CIST/DIST · COST/DRML</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -417,16 +414,15 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c22">
                 <span class="material-icons me-2" style="font-size:1.1rem">handshake</span>
                 2.2 Articulações Interinstitucionais
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c22" class="accordion-collapse collapse" data-bs-parent="#acc-integracao">
               <div class="accordion-body">
                 <p>Acompanhamento das articulações da DIST com parceiros externos. Nenhum desses aspectos gera ação autônoma do substituto — o papel é monitorar, registrar e escalar para a Coordenação Geral quando necessário.</p>
                 <div class="tags-row">
-                  <span class="tag">Painel de Gestão: Não</span>
-                  <span class="tag warn">Status: Em execução</span>
-                  <span class="tag">Áreas: CIST/DIST · CGSV</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-red">Não</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CIST/DIST · CGSV</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -466,16 +462,15 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c23">
                 <span class="material-icons me-2" style="font-size:1.1rem">contacts</span>
                 2.3 CRM
-                <span class="badge badge-escalate ms-2">⚠️ CGSV</span>
               </button>
             </h2>
             <div id="c23" class="accordion-collapse collapse" data-bs-parent="#acc-integracao">
               <div class="accordion-body">
                 <p>Aplicação em desenvolvimento pela DTI para gestão de relacionamento com stakeholders e integração com municípios. Integração prevista com a base de dados de contatos do PSV-SP. Reunião de socialização de protótipo realizada em 29/05 — Arthur acompanhou de perto.</p>
                 <div class="tags-row">
-                  <span class="tag ok">Painel de Gestão: Sim</span>
-                  <span class="tag warn">Status: Em execução</span>
-                  <span class="tag">Áreas: CIST/DIST · CIST/DPESV/SIM</span>
+                  <span class="tag-item"><span class="tag-label">Painel de Gestão:</span> <span class="tag-val-green">Sim</span></span>
+                  <span class="tag-item"><span class="tag-label">Status:</span> <span class="tag-val">Em execução</span></span>
+                  <span class="tag-item"><span class="tag-label">Áreas:</span> <span class="tag-val-area">CIST/DIST · CIST/DPESV/SIM</span></span>
                 </div>
                 <div class="links-section">
                   <span class="lbl">Links</span>
@@ -512,38 +507,33 @@
         </h2>
         <p>Referência de marcos para orientação do substituto.</p>
         <div class="timeline">
-          <div class="timeline-item">
+                    <div class="timeline-item">
             <div class="timeline-date">10/06</div>
-            <div class="timeline-label">Pareceres C1 e C3 fechados + Painel v2.0 disponível</div>
-            <div class="timeline-sub">Base para a apresentação de 12/06</div>
+            <div class="timeline-text">Pareceres C1 e C3 fechados + Painel v2.0 disponível — Base para a apresentação de 12/06</div>
           </div>
-          <div class="timeline-item">
+                    <div class="timeline-item">
             <div class="timeline-date">12/06</div>
-            <div class="timeline-label">Apresentação lista de priorização para DSV ⚠️</div>
-            <div class="timeline-sub">Entregas DIST: convite, ficha do ente e devolutiva</div>
+            <div class="timeline-text">Apresentação lista de priorização para DSV ⚠️ — Entregas DIST: convite, ficha do ente e devolutiva</div>
           </div>
-          <div class="timeline-item">
+                    <div class="timeline-item">
             <div class="timeline-date">15–19/06</div>
-            <div class="timeline-label">Estratégia e articulação para atendimento 1:1 com os municípios</div>
+            <div class="timeline-text">Estratégia e articulação para atendimento 1:1 com os municípios</div>
           </div>
-          <div class="timeline-item">
+                    <div class="timeline-item">
             <div class="timeline-date">18–19/06</div>
-            <div class="timeline-label">Imersão DFT/DSV+BIGRS — Conteúdos cursos C1 e C3</div>
-            <div class="timeline-sub">Apresentação de modelagem e conteúdo C2 — EPT</div>
+            <div class="timeline-text">Imersão DFT/DSV+BIGRS — Conteúdos cursos C1 e C3 — Apresentação de modelagem e conteúdo C2 — EPT</div>
           </div>
-          <div class="timeline-item">
+                    <div class="timeline-item">
             <div class="timeline-date">22/06</div>
-            <div class="timeline-label">Retorno de Marília Hildebrand (coordenação CIST)</div>
-            <div class="timeline-sub">v1.0 base de contatos — COST + DIST</div>
+            <div class="timeline-text">Retorno de Marília Hildebrand (coordenação CIST) — v1.0 base de contatos — COST + DIST</div>
           </div>
-          <div class="timeline-item">
+                    <div class="timeline-item">
             <div class="timeline-date">30/06</div>
-            <div class="timeline-label">Validação da modelagem dos cursos PRaVida pelas áreas de negócio ⚠️</div>
-            <div class="timeline-sub">Prazo SEI Prêmio SENATRAN (140.00219909/2026-91)</div>
+            <div class="timeline-text">Validação da modelagem dos cursos PRaVida pelas áreas de negócio ⚠️ — Prazo SEI Prêmio SENATRAN (140.00219909/2026-91)</div>
           </div>
-          <div class="timeline-item crit">
+                    <div class="timeline-item crit">
             <div class="timeline-date">04/07</div>
-            <div class="timeline-label">🔴 Início defeso eleitoral — restrições de marca e brasão</div>
+            <div class="timeline-text">🔴 Início defeso eleitoral — restrições de marca e brasão</div>
           </div>
         </div>
       </section>
