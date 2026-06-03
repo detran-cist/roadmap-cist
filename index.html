@@ -26,18 +26,17 @@
     .legend-box p { margin:0; line-height:1.6; }
     /* ── Timeline ── */
     .timeline { border-left:2px solid var(--lt); padding-left:1.5rem; margin-top:.5rem; }
-    .timeline-item { position:relative; margin-bottom:.9rem; display:flex; align-items:center; gap:.75rem; }
+    .timeline-item { position:relative; margin-bottom:.9rem; padding-left:.25rem; }
     .timeline-item::before {
-      content:''; position:absolute; left:-1.6rem; top:50%;
-      transform:translateY(-50%);
-      width:10px; height:10px; border-radius:50%; flex-shrink:0;
+      content:''; position:absolute; left:-1.72rem; top:.55em;
+      width:10px; height:10px; border-radius:50%;
       background:var(--fg); border:2px solid #fff;
       box-shadow:0 0 0 2px var(--lt);
     }
     .timeline-item.crit::before { background:#c0392b; box-shadow:0 0 0 2px #fbbfbf; }
-    .timeline-date { font-size:.82rem; font-weight:700; color:var(--fg); white-space:nowrap; min-width:62px; }
+    .timeline-date { font-size:.82rem; font-weight:700; color:var(--fg); display:inline; margin-right:.5rem; }
     .timeline-item.crit .timeline-date { color:#c0392b; }
-    .timeline-text { font-size:.9rem; }
+    .timeline-text { font-size:.9rem; display:inline; }
     /* ── Two col ── */
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:.75rem; }
     @media(max-width:600px){ .two-col{ grid-template-columns:1fr; } }
@@ -387,7 +386,7 @@
                   <div>
                     <h6>Próximos passos</h6>
                     <ul>
-                      <li><s><strong><s>03/06</s> 12/06 — repactuado - DIST:</strong> Entrega do onepager de integração das reuniões técnicas</li>
+                      <li><s><strong>03/06 - DIST:</strong> Entrega do onepager de integração das reuniões técnicas</s> → <strong>12/06 — repactuado</strong></li>
                       <li><strong>08/06 - DIST:</strong> Cadastrar projeto de criação de base com os contatos no painel de gestão da DSV</li>
                       <li><strong>12/06 - DIST:</strong> Apresentação de modelo de convite, ficha do ente e modelo de devolutiva das reuniões mensais</li>
                       <li><strong>⚠️ Atenção:</strong> 12/06 concentra múltiplas entregas da DIST (onepager + ficha do ente + modelo de convite + devolutiva + detalhamento SSP). Avaliar capacidade de execução com Edu.</li>
@@ -482,7 +481,7 @@
                   </div>
 
                   <div class="pending-callout mb-3">
-                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">road</span> DER</div>
+                    <div class="callout-title"><span class="material-icons" style="font-size:1rem">signpost</span> DER</div>
                     <ul style="list-style:none;padding:0;margin:.35rem 0 0;font-size:.9rem">
                       <li style="margin-bottom:.3rem;padding-left:1em;text-indent:-1em">▸ Reunião sobre dados realizada em 14/05 ✓</li>
                       <li style="padding-left:1em;text-indent:-1em">▸ Aguardando detalhamento técnico da DEST para dar encaminhamento junto ao DER</li>
